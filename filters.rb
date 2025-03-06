@@ -10,7 +10,7 @@ def find(id)
   end
   
   def qualified_candidates(candidates)
-    # Your code Here
+    candidates.select { |candidate| experienced?(candidate)}
   end
   
   # More methods will go below
