@@ -2,11 +2,11 @@
 # This way, we keep these methods separated from other potential parts of the program
 
 def find(id)
-    # Your code Here
+    @candidates.find { |candidate| candidate[:id] == id}
   end
   
   def experienced?(candidate)
-    # Your code Here
+    candidate[:years_of_experience] >= 2
   end
   
   def qualified_candidates(candidates)
