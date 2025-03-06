@@ -9,8 +9,23 @@ def find(id)
     candidate[:years_of_experience] >= 2
   end
   
-  def qualified_candidates(candidates)
-    candidates.select { |candidate| experienced?(candidate)}
+  def has_github_points?(candidate)
+    candidate[:github_points] >= 100
   end
   
-  # More methods will go below
+  def knows_ruby_python?(candidate)
+    candidate[:languages].include?('Ruby') || candidate[:languages].include('Python')
+  end
+  
+  def applied_recently?(candidate)
+    (Date.today - Date.parse(candidate[:date_applied])).to_i <= 15
+  end
+  
+  def over_17?(candidate)
+    candidate[:age] >= 18
+  end
+
+  def qualified_candidates(candidates)
+    candidates.select do |candidate| experienced?(candidate) && has_github_points?(candidate) && knows_ruby_python?(candidate) && applied_recently?(candidate) && over_17?(candidate)
+  end
+end
