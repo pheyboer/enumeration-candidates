@@ -25,7 +25,16 @@ def find(id)
     candidate[:age] >= 18
   end
 
+  # Qualified candidates
   def qualified_candidates(candidates)
     candidates.select do |candidate| experienced?(candidate) && has_github_points?(candidate) && knows_ruby_python?(candidate) && applied_recently?(candidate) && over_17?(candidate)
   end
+
+  # sorting on experience and points - sort by and then reverse
+  def ordered_by_qualifications(candidate)
+    candidates.sort_by { |candidate| [-candidate[:years_of_experience], -candidate[:github_points]] }
+  end
+
+
+
 end
